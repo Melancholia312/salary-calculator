@@ -1,8 +1,12 @@
 package com.melancholia.salarycalculator.calculation;
 
+import lombok.*;
+
 import java.math.BigDecimal;
 
-public record VacationCalculationResult(
-        long days,
-        BigDecimal total
-) {}
+@Data
+@AllArgsConstructor
+public class VacationCalculationResult {
+    private long days;
+    private BigDecimal total;
+}
