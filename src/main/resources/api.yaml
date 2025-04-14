@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  title: Salary Calculator API
+  description: Salary Calculator API
+  version: 1.0.0
+tags:
+  - name: vacation-api
+paths:
+  /calculate:
+    get:
+      tags:
+        - vacation
+      summary: Расчёт отпускных
+      operationId: calculateVacation
+      description: Расчёт отпускных по средней ЗП и количеству дней отпуска
+      parameters:
+        - name: averageSalary
+          in: query
+          required: true
+          description: Средняя ЗП
+          schema:
+            type: number
+        - name: vacationStartDate
+          in: query
+          description: Дата начала отпуска
+          schema:
+            type: string
+            format: date
+        - name: vacationEndDate
+          in: query
+          description: Дата окончания отпуска
+          schema:
+            type: string
+            format: date
+        - name: vacationDays
+          in: query
+          description: Количество дней отпуска
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculatedVacationResultDto'
+
+components:
+  schemas:
+    CalculatedVacationResultDto:
+      type: object
+      description: Результат расчёта отпускных
+      properties:
+        vacationDays:
+          type: integer
+          description: Количество дней отпуска
+        vacationPaySum:
+          type: number
+          description: Сумма выплаченных отпускных
+    ErrorResponse:

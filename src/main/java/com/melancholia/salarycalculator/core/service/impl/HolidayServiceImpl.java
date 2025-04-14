@@ -1,16 +1,22 @@
-package com.melancholia.salarycalculator.calculation;
+package com.melancholia.salarycalculator.core.service.impl;
 
+import com.melancholia.salarycalculator.core.service.HolidayService;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
+import static java.time.DayOfWeek.SATURDAY;
+import static java.time.DayOfWeek.SUNDAY;
+import static java.time.LocalDate.now;
+import static java.util.List.of;
+
 @Service
 public class HolidayServiceImpl implements HolidayService {
 
-    private static final int currentYear = LocalDate.now().getYear();
-    private static final List<LocalDate> holidays = List.of(
+    private static final int currentYear = now().getYear();
+    private static final List<LocalDate> holidays = of(
             LocalDate.of(currentYear, 1, 1),
             LocalDate.of(currentYear, 1, 2),
             LocalDate.of(currentYear, 1, 3),
@@ -30,7 +36,7 @@ public class HolidayServiceImpl implements HolidayService {
     @Override
     public boolean isHoliday(LocalDate date) {
         return holidays.contains(date)
-                || date.getDayOfWeek() == DayOfWeek.SATURDAY
-                ||  date.getDayOfWeek() == DayOfWeek.SUNDAY;
+                || date.getDayOfWeek() == SATURDAY
+                ||  date.getDayOfWeek() == SUNDAY;
     }
 }

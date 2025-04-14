@@ -1,6 +1,5 @@
-package com.melancholia.salarycalculator.core;
+package com.melancholia.salarycalculator.core.dto;
 
-import org.springframework.http.HttpStatus;
 import lombok.Getter;
 import lombok.Setter;
 
